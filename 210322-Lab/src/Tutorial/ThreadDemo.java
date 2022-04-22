@@ -1,12 +1,7 @@
 package Tutorial;
 
-
-//package concurrency;
-
 import java.awt.*;
 import java.applet.*;
-//import concurrency.display.*;
-
 
 class Rotator implements Runnable {
 

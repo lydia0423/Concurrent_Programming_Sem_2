@@ -1,11 +1,10 @@
 package Barber;
 
-
 public class Main {
 
 	public static void main(String[] args) {
 		
-		 Bshop shop = new Bshop();
+                Bshop shop = new Bshop();
 		 
 	        Barber barber = new Barber(shop);
 	        CustomerGenerator cg = new CustomerGenerator(shop);
@@ -14,7 +13,8 @@ public class Main {
 	        Thread thcg = new Thread(cg);
 	        thcg.start();
 	        thbarber.start();
-	        
+	        Clock clock = new Clock(cg, barber);
+                clock.start();
 	}
 
 }

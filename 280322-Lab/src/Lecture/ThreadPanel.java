@@ -1,12 +1,8 @@
 package Lecture;
 
-//@author: j.n.magee 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
-
-/********************************************************/
 
 public class ThreadPanel extends Panel {
 

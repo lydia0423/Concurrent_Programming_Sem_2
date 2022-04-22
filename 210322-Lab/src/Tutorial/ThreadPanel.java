@@ -1,11 +1,8 @@
 package Tutorial;
 
-//package concurrency.display;
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
-
-/********************************************************/
 
 public class ThreadPanel extends Panel {
 

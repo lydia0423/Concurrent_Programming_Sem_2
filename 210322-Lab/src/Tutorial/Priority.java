@@ -1,123 +1,109 @@
 package Tutorial;
 
-    class Pattern
-    {
+class Pattern {
 
-        int A=0;
-        int B=0;
-        int C=0;
-        
-        //set volatile to the variable to make it accessible
-        volatile boolean running=true;
+    int A = 0;
+    int B = 0;
+    int C = 0;
 
-        public void CountA()
-        {
-            while(running)
+    //set volatile to the variable to make it accessible
+    volatile boolean running = true;
+
+    public void CountA() {
+        while (running) {
             A++;
         }
+    }
 
-        public void CountB()
-        {
-            while(running)
+    public void CountB() {
+        while (running) {
             B++;
         }
-        
-        public void CountC()
-        {
-            while(running)
+    }
+
+    public void CountC() {
+        while (running) {
             C++;
         }
-
-        public void Stop()
-        {
-            running = false;
-        }
-
-        public void Show()
-        {
-            System.out.print("\n\tA : " + A);
-            System.out.print("\n\tB : " + B);
-            System.out.print("\n\tC : " + C);
-        }
-
     }
 
-    class ThreadA extends Thread
-    {
-        Pattern P;
+    public void Stop() {
+        running = false;
+    }
 
-        ThreadA(Pattern P)
-        {
+    public void Show() {
+        System.out.print("\n\tA : " + A);
+        System.out.print("\n\tB : " + B);
+        System.out.print("\n\tC : " + C);
+    }
+
+}
+
+class ThreadA extends Thread {
+
+    Pattern P;
+
+    ThreadA(Pattern P) {
         this.P = P;
-        }
+    }
 
-        public void run()
-        {
+    public void run() {
         P.CountA();
-        }
+    }
+}
+
+class ThreadB extends Thread {
+
+    Pattern P;
+
+    ThreadB(Pattern P) {
+        this.P = P;
     }
 
-    class ThreadB extends Thread
-    {
-        Pattern P;
+    public void run() {
+        P.CountB();
+    }
+}
 
-        ThreadB(Pattern P)
-        {
-            this.P = P;
-        }
+class ThreadC extends Thread {
 
-        public void run()
-        {
-            P.CountB();
-        }
+    Pattern P;
+
+    ThreadC(Pattern P) {
+        this.P = P;
     }
 
-    class ThreadC extends Thread
-    {
-        Pattern P;
-
-        ThreadC(Pattern P)
-        {
-            this.P = P;
-        }
-
-        public void run()
-        {
-            P.CountC();
-        }
+    public void run() {
+        P.CountC();
     }
+}
 
-    class Priority
-    {
-        public static void main(String arg[])
-        {
+class Priority {
 
-            Pattern P = new Pattern();
+    public static void main(String arg[]) {
 
-            ThreadA t1 = new ThreadA(P);    //Statement 1
-            ThreadB t2 = new ThreadB(P);    //Statement 2
-            ThreadC t3 = new ThreadC(P);  
+        Pattern P = new Pattern();
 
-            t1.setPriority(Thread.MAX_PRIORITY); //10
-            t2.setPriority(Thread.MIN_PRIORITY); //1
-            t3.setPriority(Thread.NORM_PRIORITY); //5 -default
-            
-            t1.start();
-            t2.start();
-            t3.start();
+        ThreadA t1 = new ThreadA(P);    //Statement 1
+        ThreadB t2 = new ThreadB(P);    //Statement 2
+        ThreadC t3 = new ThreadC(P);
 
-            try
-            {
-                Thread.sleep(70);
-            }
-            catch (Exception e)
-            {
-                System.out.println("\n\tError.....");
-            }
+        t1.setPriority(Thread.MAX_PRIORITY); //10
+        t2.setPriority(Thread.MIN_PRIORITY); //1
+        t3.setPriority(Thread.NORM_PRIORITY); //5 -default
 
+        t1.start();
+        t2.start();
+        t3.start();
 
-            P.Stop();
-            P.Show();
-
+        try {
+            Thread.sleep(70);
+        } catch (Exception e) {
+            System.out.println("\n\tError.....");
         }
+
+        P.Stop();
+        P.Show();
+
     }
+}
